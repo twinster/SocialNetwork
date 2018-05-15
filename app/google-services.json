@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "129113770656",
+    "firebase_url": "https://socialnetwork-ce010.firebaseio.com",
+    "project_id": "socialnetwork-ce010",
+    "storage_bucket": "socialnetwork-ce010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129113770656:android:a15d08bbec722baf",
+        "android_client_info": {
+          "package_name": "com.example.twinster.socialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129113770656-713fhe7nod1v1aeho9f1bh4nsi82ehqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.twinster.socialnetwork",
+            "certificate_hash": "c3f18b8b4557f089f733789ff6691df96e3d06e1"
+          }
+        },
+        {
+          "client_id": "129113770656-psodngdupbt4u0c7ntpahk6a9pso1ime.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_VtV1CfpoirYtkDdZ-OF2uourAh1Wuik"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129113770656-psodngdupbt4u0c7ntpahk6a9pso1ime.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
