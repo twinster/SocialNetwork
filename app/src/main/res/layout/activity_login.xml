@@ -4,6 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/outside_margin"
     tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_marginTop="@dimen/username_margin_top"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:inputType="textPassword"
+        android:layout_height="@dimen/input_height"
+        android:hint="@string/password"
+        />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgont_password"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="@dimen/forgot_pw_margin"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"/>
+
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/input_height"
+        android:text="@string/sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/next_margin_top"
+        android:onClick="signIn"
+        />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,15 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:layout_margin="@dimen/outside_margin"
+    >
 
-    <TextView
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_marginTop="@dimen/username_margin_top"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:hint="@string/username_or_email"
+        />
+
+    <Button
+        android:id="@+id/btNext"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="@dimen/input_height"
+        android:text="@string/next_button"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="@dimen/next_margin_top"
+        />
 
+
+    <Button
+        android:id="@+id/btCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/input_height"
+        android:text="@string/create_account"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/next_margin_top"
+        />
 </android.support.constraint.ConstraintLayout>
