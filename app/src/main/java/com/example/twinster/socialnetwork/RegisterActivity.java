@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Intent mainPage = new Intent();
+                    Intent mainPage = new Intent(RegisterActivity.this, MainPageActivity.class);
                     startActivity(mainPage);
                     finish();
                 }

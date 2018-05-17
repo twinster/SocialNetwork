@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             //TODO call main activity after authorization
+            Intent nextIntent = new Intent(MainActivity.this, MainPageActivity.class);
+            startActivity(nextIntent);
+            finish();
         }
     }
 }

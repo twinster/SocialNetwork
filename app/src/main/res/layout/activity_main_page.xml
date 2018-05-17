@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainPageActivity">
 
+    <TextView
+        android:id="@+id/tvSuccess"
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="You are logged on the best Social Network"/>
+
     <Button
         android:id="@+id/btLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_out"
+        app:layout_constraintTop_toBottomOf="@+id/tvSuccess"
         android:onClick="logOut"/>
 
 </android.support.constraint.ConstraintLayout>
