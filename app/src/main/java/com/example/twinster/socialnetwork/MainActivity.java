@@ -12,21 +12,17 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    public static final String email_key = "Email";
-
-    Button btNext, btCreateAccount;
-    EditText etEmail;
 
 
+    Button btLogin, btGetStarted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btNext = findViewById(R.id.btNext);
-        btCreateAccount = findViewById(R.id.btCreateAccount);
-        etEmail = findViewById(R.id.etEmail);
+        btLogin = findViewById(R.id.btSignIn);
+        btGetStarted = findViewById(R.id.btSignUp);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -37,18 +33,17 @@ public class MainActivity extends AppCompatActivity {
         //Todo main page login and create
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null){
-            btNext.setOnClickListener(new View.OnClickListener() {
+            btLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(MainActivity.this, LoginActivity.class);
-                    nextIntent.putExtra(email_key, etEmail.getText().toString());
                     startActivity(nextIntent);
                     finish();
                 }
             });
 
 
-            btCreateAccount.setOnClickListener(new View.OnClickListener() {
+            btGetStarted.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(MainActivity.this, RegisterActivity.class);

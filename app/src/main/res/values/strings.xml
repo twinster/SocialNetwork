@@ -24,4 +24,13 @@
     <string name="log_out">Log Out</string>
     <string name="sign_in">Sign In</string>
     <string name="forgont_password">Forgont Password</string>
+    <string name="next">Next</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="e_mail">E-mail</string>
+    <string name="sign_in">Sign In</string>
+    <string name="social_network">Social Network</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="get_started">Get Started</string>
 </resources>

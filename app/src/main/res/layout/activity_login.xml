@@ -4,38 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/outside_margin"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:layout_margin="@dimen/outside_margin">
+
+
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etEmail"
         android:layout_marginTop="@dimen/username_margin_top"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         android:layout_height="@dimen/input_height"
-        android:hint="@string/password"
+        android:hint="@string/e_mail"
         />
 
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forgont_password"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="@dimen/forgot_pw_margin"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"/>
+
 
     <Button
-        android:id="@+id/btLogin"
+        android:id="@+id/btNext"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/input_height"
-        android:text="@string/sign_in"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        android:text="@string/next"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/next_margin_top"
-        android:onClick="signIn"
+        android:onClick="next"
         />
 
 </android.support.constraint.ConstraintLayout>

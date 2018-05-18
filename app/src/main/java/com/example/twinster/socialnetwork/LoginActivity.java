@@ -16,35 +16,26 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etPassword;
-    private String email;
+
+    private EditText etEmail;
+    public static final String email_key = "Email";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etPassword = findViewById(R.id.etPassword);
+        etEmail = findViewById(R.id.etEmail);
 
-        email = getIntent().getStringExtra(MainActivity.email_key);
     }
 
 
-    public void signIn(View view) {
-        String password = etPassword.getText().toString();
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Intent mainPage = new Intent(LoginActivity.this, MainPageActivity.class);
-                    startActivity(mainPage);
-                    finish();
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "Error During Registration Please input correct data",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
+    public void next(View view) {
+
+        Intent login2 = new Intent(LoginActivity.this, Login2Activity.class);
+        login2.putExtra(email_key,etEmail.getText().toString());
+        startActivity(login2);
+        finish();
     }
 }

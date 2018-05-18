@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.twinster.socialnetwork.Login2Activity"
+    android:layout_margin="@dimen/outside_margin">
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_marginTop="@dimen/username_margin_top"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:inputType="textPassword"
+        android:layout_height="@dimen/input_height"
+        android:hint="@string/password"
+    />
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgont_password"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="@dimen/forgot_pw_margin"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"/>
+
+    <CheckBox
+        android:id="@+id/cbRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember_me"
+        app:layout_constraintTop_toBottomOf="@id/etPassword"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/input_height"
+        android:text="@string/sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/next_margin_top"
+        android:onClick="signIn"
+    />
+
+</android.support.constraint.ConstraintLayout>

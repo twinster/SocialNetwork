@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
         android:hint="@string/email"
+        android:inputType="textEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/etUserName" />
 
     <EditText
