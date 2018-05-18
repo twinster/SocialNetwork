@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">SocialNetwork</string>
+    <string name="app_name">Bruco</string>
     <string name="username_or_email">Username or Email</string>
     <string name="password">Password</string>
     <string name="next_button">Next</string>
-    <string name="create_account">Create Account</string>
     <string name="title_activity_registration">Sign in</string>
 
     <!-- Strings related to login -->
@@ -20,9 +19,7 @@
     </string>
     <string name="username">UserName</string>
     <string name="email">Email</string>
-    <string name="sign_up">Sign Up</string>
     <string name="log_out">Log Out</string>
-    <string name="sign_in">Sign In</string>
     <string name="forgont_password">Forgont Password</string>
     <string name="next">Next</string>
     <string name="remember_me">Remember Me</string>
@@ -33,4 +30,5 @@
     <string name="create_account">Create Account</string>
     <string name="login">Login</string>
     <string name="get_started">Get Started</string>
+    <string name="bruco">Bruco</string>
 </resources>

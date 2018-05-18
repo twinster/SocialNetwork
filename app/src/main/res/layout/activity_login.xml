@@ -8,7 +8,6 @@
     android:layout_margin="@dimen/outside_margin">
 
 
-
     <EditText
         android:id="@+id/etEmail"
         android:layout_marginTop="@dimen/username_margin_top"
@@ -18,7 +17,6 @@
         android:layout_height="@dimen/input_height"
         android:hint="@string/e_mail"
         />
-
 
 
     <Button

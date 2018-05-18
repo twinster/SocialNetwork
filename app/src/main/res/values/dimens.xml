@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="input_height">50dp</dimen>
+    <dimen name="input_height">45dp</dimen>
     <dimen name="username_margin_top">100dp</dimen>
     <dimen name="next_margin_top">30dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -9,4 +9,8 @@
     <dimen name="forgot_pw_margin">5dp</dimen>
     <dimen name="outside_margin">50dp</dimen>
     <dimen name="name_text_size">40sp</dimen>
+    <dimen name="margin_top">50dp</dimen>
+    <dimen name="bt_side_margin">45dp</dimen>
+    <dimen name="Get_started_top_margin">10dp</dimen>
+    <dimen name="Login_top_margin">115dp</dimen>
 </resources>

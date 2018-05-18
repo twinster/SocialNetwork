@@ -12,7 +12,7 @@
         android:textSize="30sp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="You are logged on the best Social Network"/>
+        android:text="You are loggedd on the best Social Network"/>
 
     <Button
         android:id="@+id/btLogOut"
