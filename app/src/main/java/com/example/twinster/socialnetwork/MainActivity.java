@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    public Toolbar myToolBar;
+    private Toolbar myToolBar;
 
     Button btLogin, btGetStarted;
 
@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        myToolBar =(Toolbar) findViewById(R.id.mainpage_toolbar);
+        myToolBar = (Toolbar) findViewById(R.id.mainpage_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle("sadas");
+        getSupportActionBar().setTitle("Bruco");
+
     }
 
     @Override

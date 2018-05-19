@@ -21,7 +21,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btSignUp;
     private FirebaseAuth mAuth;
 
-    public Toolbar myToolBar;
+    private Toolbar myToolBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btSignUp = findViewById(R.id.btSignUp);
 
-
+        myToolBar = (Toolbar) findViewById(R.id.mainpage_toolbar);
+        setSupportActionBar(myToolBar);
+        getSupportActionBar().setTitle("Create Account");
 
         btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
                 user_registration(userName, email, password);
             }
         });
+
+
 
     }
 
