@@ -4,10 +4,10 @@
 
     <item
         android:id="@+id/main_settings_button"
-        android:title="Account Settings" />
+        android:title="@string/account_settings" />
     <item
         android:id="@+id/main_all_button"
-        android:title="All Users" />
+        android:title="@string/all_users" />
     <item
         android:id="@+id/main_logout_button"
         android:title="@string/log_out" />

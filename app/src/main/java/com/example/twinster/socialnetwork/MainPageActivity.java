@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -40,12 +41,6 @@ public class MainPageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Main Page");
     }
 
-    public void logOut(View view) {
-        FirebaseAuth.getInstance().signOut();
-        Intent mainIntent = new Intent(MainPageActivity.this, MainActivity.class);
-        startActivity(mainIntent);
-        finish();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,6 +60,11 @@ public class MainPageActivity extends AppCompatActivity {
             Intent mainIntent = new Intent(MainPageActivity.this, MainActivity.class);
             startActivity(mainIntent);
             finish();
+        }
+
+        else {
+            Intent settingsIntent = new Intent(MainPageActivity.this,SettingsActivity.class);
+            startActivity(settingsIntent);
         }
 
         return true;

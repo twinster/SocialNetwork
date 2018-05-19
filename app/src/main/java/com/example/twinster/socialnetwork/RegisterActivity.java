@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -26,6 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Toolbar myToolBar;
     private ProgressDialog registerDialog;
+
+    private DatabaseReference appdatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,16 +79,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void user_registration(String userName, String email, String password) {
+    private void user_registration(final String userName, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    registerDialog.dismiss();
-                    Intent mainPage = new Intent(RegisterActivity.this, MainPageActivity.class);
-                    mainPage.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(mainPage);
-                    finish();
+
+                    FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
+                    String UserId = currUser.getUid();
+                    appdatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(UserId);
+                    HashMap<String, String> userMap = new HashMap<>();
+                    userMap.put("Name",userName);
+                    userMap.put("Image","Default");
+                    userMap.put("thumb_image","Default");
+                    appdatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                registerDialog.dismiss();
+                                Intent mainPage = new Intent(RegisterActivity.this, MainPageActivity.class);
+                                mainPage.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(mainPage);
+                                finish();
+                            }
+                        }
+                    });
+
                 }
                 else {
                     registerDialog.dismiss();
