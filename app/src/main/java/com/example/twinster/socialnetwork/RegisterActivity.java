@@ -89,8 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
                     String UserId = currUser.getUid();
                     appdatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(UserId);
                     HashMap<String, String> userMap = new HashMap<>();
-                    userMap.put("Name",userName);
-                    userMap.put("Image","Default");
+                    userMap.put("name",userName);
+                    userMap.put("image","Default");
                     userMap.put("thumb_image","Default");
                     appdatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -101,6 +101,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 mainPage.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainPage);
                                 finish();
+                            }
+                            else{
+                                registerDialog.dismiss();
+                                Toast.makeText(RegisterActivity.this, "Error while Registering", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

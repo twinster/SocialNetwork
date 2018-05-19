@@ -43,6 +43,7 @@
         android:layout_marginStart="@dimen/bt_side_margin"
         android:layout_marginTop="@dimen/margin_top"
         android:background="@color/colorPrimaryDark"
+        android:onClick="changeImage"
         />
 
 

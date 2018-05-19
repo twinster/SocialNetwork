@@ -40,4 +40,6 @@
     <string name="change_image">Change Image</string>
     <string name="account_settings">Account Settings</string>
     <string name="all_users">All Users</string>
+    <string name="title_activity_users">UsersActivity</string>
+    <string name="display_username">Display UserNAme</string>
 </resources>

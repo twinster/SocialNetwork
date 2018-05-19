@@ -62,9 +62,14 @@ public class MainPageActivity extends AppCompatActivity {
             finish();
         }
 
-        else {
+        if (item.getItemId() == R.id.main_settings_button){
             Intent settingsIntent = new Intent(MainPageActivity.this,SettingsActivity.class);
             startActivity(settingsIntent);
+        }
+
+        if (item.getItemId() == R.id.main_all_button){
+            Intent usersIntent = new Intent(MainPageActivity.this, UsersActivity.class);
+            startActivity(usersIntent);
         }
 
         return true;

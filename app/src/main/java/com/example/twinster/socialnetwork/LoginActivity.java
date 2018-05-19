@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
         else {
-            Toast.makeText(LoginActivity.this, "Plase fill email field",Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "Please fill email field",Toast.LENGTH_LONG).show();
         }
 
     }
