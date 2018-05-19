@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
+    public Toolbar myToolBar;
 
     Button btLogin, btGetStarted;
 
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         btGetStarted = findViewById(R.id.btGetStarted);
 
         mAuth = FirebaseAuth.getInstance();
+
+        myToolBar =(Toolbar) findViewById(R.id.mainpage_toolbar);
+        setSupportActionBar(myToolBar);
+        getSupportActionBar().setTitle("sadas");
     }
 
     @Override

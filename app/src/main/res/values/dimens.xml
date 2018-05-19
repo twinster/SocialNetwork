@@ -2,7 +2,7 @@
 <resources>
     <dimen name="input_height">45dp</dimen>
     <dimen name="username_margin_top">100dp</dimen>
-    <dimen name="next_margin_top">30dp</dimen>
+    <dimen name="next_margin_top">50dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -12,5 +12,8 @@
     <dimen name="margin_top">50dp</dimen>
     <dimen name="bt_side_margin">45dp</dimen>
     <dimen name="Get_started_top_margin">10dp</dimen>
-    <dimen name="Login_top_margin">115dp</dimen>
+    <dimen name="Login_top_margin">100dp</dimen>
+    <dimen name="cna_text_size">30sp</dimen>
+    <dimen name="registration_fields_margin_top">70dp</dimen>
+    <dimen name="logo_margin_top">80dp</dimen>
 </resources>

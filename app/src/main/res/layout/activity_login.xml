@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:layout_margin="@dimen/outside_margin">
+    tools:context=".LoginActivity">
 
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_marginTop="@dimen/username_margin_top"
-        app:layout_constraintTop_toTopOf="parent"
+    <ImageView
+        android:id="@+id/ivBackground"
         android:layout_width="match_parent"
-        android:inputType="textEmailAddress"
-        android:layout_height="@dimen/input_height"
-        android:hint="@string/e_mail"
-        />
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="fitXY"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/outside_margin">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_height"
+            android:layout_marginTop="@dimen/username_margin_top"
+            android:hint="@string/e_mail"
+            android:inputType="textEmailAddress"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColorHint="@color/colorAccent"/>
 
 
-    <Button
-        android:id="@+id/btNext"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/input_height"
-        android:text="@string/next"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="@dimen/next_margin_top"
-        android:onClick="next"
-        />
+        <Button
+            android:id="@+id/btNext"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_height"
+            android:text="@string/next"
+            app:layout_constraintTop_toBottomOf="@+id/etEmail"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/next_margin_top"
+            android:onClick="next"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"/>
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

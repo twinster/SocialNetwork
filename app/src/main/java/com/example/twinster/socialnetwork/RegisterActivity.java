@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btSignUp;
     private FirebaseAuth mAuth;
 
+    public Toolbar myToolBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btSignUp = findViewById(R.id.btSignUp);
 
+
+
         btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user_registration(userName, email, password);
             }
         });
+
     }
 
     private void user_registration(String userName, String email, String password) {
