@@ -7,6 +7,8 @@
     tools:context=".LoginActivity">
 
 
+    <include layout="@layout/app_tool_bar" android:id="@+id/login_toolbar"/>
+
     <ImageView
         android:id="@+id/ivBackground"
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,8 @@ public class Login2Activity extends AppCompatActivity {
 
     private ProgressDialog loginDialog;
 
+    private Toolbar myToolBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,11 @@ public class Login2Activity extends AppCompatActivity {
 
         loginDialog = new ProgressDialog(this);
 
+
+        myToolBar = (Toolbar) findViewById(R.id.login2_toolbar);
+        setSupportActionBar(myToolBar);
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
