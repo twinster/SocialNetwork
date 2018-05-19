@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btSignUp = findViewById(R.id.btSignUp);
 
-        myToolBar = (Toolbar) findViewById(R.id.mainpage_toolbar);
+        myToolBar = findViewById(R.id.registration_toolbar);
         setSupportActionBar(myToolBar);
         getSupportActionBar().setTitle("Create Account");
 

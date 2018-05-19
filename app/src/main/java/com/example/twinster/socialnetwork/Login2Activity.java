@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -45,5 +46,12 @@ public class Login2Activity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void recoverPassword(View view) {
+        Intent forgot = new Intent(Login2Activity.this, LoginActivity.class);
+        forgot.putExtra(LoginActivity.email_key, email);
+        startActivity(forgot);
+        finish();
     }
 }
