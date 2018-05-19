@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        //Todo main page login and create
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null){
             btLogin.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         else {
-            //TODO call main activity after authorization
             Intent nextIntent = new Intent(MainActivity.this, MainPageActivity.class);
             startActivity(nextIntent);
             finish();

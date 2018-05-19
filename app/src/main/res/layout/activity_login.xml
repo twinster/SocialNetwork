@@ -42,6 +42,18 @@
             android:background="@color/colorAccent"
             android:textColor="#fff"/>
 
+        <Button
+            android:id="@+id/btSend"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_height"
+            android:text="@string/send_recover"
+            app:layout_constraintTop_toBottomOf="@+id/etEmail"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/next_margin_top"
+            android:onClick="sendRecover"
+            android:visibility="gone"
+            />
+
     </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>
