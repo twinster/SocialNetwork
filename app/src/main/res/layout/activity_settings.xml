@@ -9,7 +9,7 @@
     >
 
 
-    <android.support.v4.widget.CircleImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImg"
         android:layout_width="@dimen/circleimg_size"
         android:layout_height="@dimen/circleimg_size"
