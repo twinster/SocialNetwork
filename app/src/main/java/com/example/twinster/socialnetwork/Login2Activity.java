@@ -1,9 +1,11 @@
 package com.example.twinster.socialnetwork;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +22,8 @@ public class Login2Activity extends AppCompatActivity {
     private EditText etPassword;
     private String email;
 
+    private ProgressDialog loginDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,23 +32,40 @@ public class Login2Activity extends AppCompatActivity {
         email = getIntent().getStringExtra(LoginActivity.email_key);
         etPassword = findViewById(R.id.etPassword);
 
+        loginDialog = new ProgressDialog(this);
+
+
     }
 
     public void signIn(View view) {
         String password = etPassword.getText().toString();
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Intent mainPage = new Intent(Login2Activity.this, MainPageActivity.class);
-                    startActivity(mainPage);
-                    finish();
+        if (!TextUtils.isEmpty(password)){
+            loginDialog.setTitle("Signing in ");
+            loginDialog.setMessage("Please wait while we are checking ur credentials");
+            loginDialog.setCanceledOnTouchOutside(false);
+            loginDialog.show();
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        loginDialog.dismiss();
+                        Intent mainPage = new Intent(Login2Activity.this, MainPageActivity.class);
+                        mainPage.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(mainPage);
+                        finish();
+
+                    }
+                    else {
+                        loginDialog.dismiss();
+                        Toast.makeText(Login2Activity.this, "Error During Registration Please input correct data",Toast.LENGTH_LONG).show();
+                    }
                 }
-                else {
-                    Toast.makeText(Login2Activity.this, "Error During Registration Please input correct data",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+            });
+
+        }
+        else {
+            Toast.makeText(Login2Activity.this, "Plase fill password field",Toast.LENGTH_LONG).show();
+        }
 
     }
 

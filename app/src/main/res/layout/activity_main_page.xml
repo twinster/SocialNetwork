@@ -6,20 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".MainPageActivity">
 
-    <TextView
-        android:id="@+id/tvSuccess"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:textSize="30sp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="You are loggedd on the best Social Network"/>
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_out"
-        app:layout_constraintTop_toBottomOf="@+id/tvSuccess"
-        android:onClick="logOut"/>
+        <include layout="@layout/app_tool_bar" android:id="@+id/mainpage_toolbar"/>
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:id="@+id/mainpage_tabs"
+            >
+
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainpage_viewpager"
+            android:background="@color/white"
+            >
+
+
+        </android.support.v4.view.ViewPager>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--<Button-->
+        <!--android:id="@+id/btLogOut"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/log_out"-->
+
+        <!--android:onClick="logOut"/>-->
 
 </android.support.constraint.ConstraintLayout>

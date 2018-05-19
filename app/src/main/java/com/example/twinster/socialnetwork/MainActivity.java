@@ -1,6 +1,7 @@
 package com.example.twinster.socialnetwork;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        myToolBar = (Toolbar) findViewById(R.id.mainpage_toolbar);
+        myToolBar = (Toolbar) findViewById(R.id.mainactivity_toolbar);
         setSupportActionBar(myToolBar);
         getSupportActionBar().setTitle("Bruco");
 

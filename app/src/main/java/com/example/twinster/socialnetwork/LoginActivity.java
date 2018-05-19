@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,10 +51,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void next(View view) {
-        Intent login2 = new Intent(LoginActivity.this, Login2Activity.class);
-        login2.putExtra(email_key,etEmail.getText().toString());
-        startActivity(login2);
-        finish();
+        String regEmail = etEmail.getText().toString();
+        if (!TextUtils.isEmpty(regEmail)) {
+            Intent login2 = new Intent(LoginActivity.this, Login2Activity.class);
+            login2.putExtra(email_key,etEmail.getText().toString());
+            startActivity(login2);
+            finish();
+        }
+        else {
+            Toast.makeText(LoginActivity.this, "Plase fill email field",Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void sendRecover(View view) {
