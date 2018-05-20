@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:11.6.0'
     implementation 'com.google.firebase:firebase-storage:11.6.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.okhttp:okhttp:2.5.0'
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
     implementation 'com.iceteck.silicompressorr:silicompressor:2.1'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'

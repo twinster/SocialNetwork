@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -29,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView ivProfileImage;
     private TextView tvProfileName, tvTotalFriend;
-    private Button btSendRequest;
+    private Button btSendRequest, btDecline;
 
     private DatabaseReference profileDatabase;
 
@@ -54,10 +56,11 @@ public class ProfileActivity extends AppCompatActivity {
         friendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
-        tvProfileName = (TextView) findViewById(R.id.tvProfileName);
-        tvTotalFriend = (TextView) findViewById(R.id.tvTotalFriends);
-        btSendRequest = (Button) findViewById(R.id.btSendFreindRequest);
+        ivProfileImage = findViewById(R.id.ivProfileImage);
+        tvProfileName = findViewById(R.id.tvProfileName);
+        tvTotalFriend = findViewById(R.id.tvTotalFriends);
+        btSendRequest = findViewById(R.id.btSendFreindRequest);
+        btDecline = findViewById(R.id.btDeclineFreindRequest);
 
 
         currentState = "not_friends";
@@ -74,11 +77,27 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String displayName = dataSnapshot.child("name").getValue().toString();
-                String image = dataSnapshot.child("image").getValue().toString();
+                final String image = dataSnapshot.child("image").getValue().toString();
 
                 tvProfileName.setText(displayName);
 
-                Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.defaultpic).into(ivProfileImage);
+                if (!image.equals("Default")){
+                    ivProfileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                }
+
+                Picasso.with(ProfileActivity.this).load(image).
+                        networkPolicy(NetworkPolicy.OFFLINE).
+                        placeholder(R.drawable.defaultpic).into(ivProfileImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.defaultpic).into(ivProfileImage);
+                    }
+                });
 
 
                 friendRequestDatabase.child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -93,10 +112,14 @@ public class ProfileActivity extends AppCompatActivity {
                                 currentState = "req_recieved";
                                 btSendRequest.setText("Accept Friend Request");
 
+                                btDecline.setVisibility(View.VISIBLE);
+                                btDecline.setEnabled(true);
+
                             } else if(req_type.equals("sent")) {
 
                                     currentState = "req_sent";
                                     btSendRequest.setText("Cancel Friend Request");
+
                             }
 
                             progressDialog.dismiss();
@@ -169,7 +192,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         currentState = "req_sent";
                                         btSendRequest.setText("Cancel Friend Request");
 
-                                       // Toast.makeText(ProfileActivity.this, "Request sent successfully", Toast.LENGTH_SHORT).show();
+                                        // Toast.makeText(ProfileActivity.this, "Request sent successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -92,11 +94,26 @@ public class UsersActivity extends AppCompatActivity {
 
         }
 
-        public void setImage(String thumb_image, Context context) {
+        public void setImage(final String thumb_image, final Context context) {
 
-            CircleImageView userImageView = (CircleImageView) view.findViewById(R.id.profileImgUsers);
+            final CircleImageView userImageView = (CircleImageView) view.findViewById(R.id.profileImgUsers);
 
-            Picasso.with(context).load(thumb_image).placeholder(R.drawable.defaultpic).into(userImageView);
+            Picasso.with(context).load(thumb_image).
+                    networkPolicy(NetworkPolicy.OFFLINE).
+                    placeholder(R.drawable.defaultpic).
+                    into(userImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(context).load(thumb_image).
+                                    placeholder(R.drawable.defaultpic).
+                                    into(userImageView);
+                        }
+                    });
 
         }
     }
