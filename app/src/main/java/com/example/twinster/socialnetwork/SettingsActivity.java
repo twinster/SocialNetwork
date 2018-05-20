@@ -2,6 +2,7 @@ package com.example.twinster.socialnetwork;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -26,11 +27,16 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -66,7 +72,9 @@ public class SettingsActivity extends AppCompatActivity {
                 String thumb = dataSnapshot.child("thumb_image").getValue().toString();
 
                 tvUserName.setText(name);
-                Picasso.with(SettingsActivity.this).load(image).into(displayImage);
+                if (!image.equals("default")){
+                    Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.defaultpic).into(displayImage);
+                }
             }
 
             @Override
@@ -103,25 +111,65 @@ public class SettingsActivity extends AppCompatActivity {
                 myProgressDialog.setMessage("Wait while Uploading Image");
                 myProgressDialog.setCanceledOnTouchOutside(false);
                 myProgressDialog.show();
+
+
                 Uri resultUri = result.getUri();
+
+                File thumb_file_path = new File(resultUri.getPath());
+
                 String currentUserId = currentUser.getUid();
+
+                Bitmap thumb_bitmap = new Compressor(this)
+                        .setMaxWidth(200)
+                        .setMaxHeight(200)
+                        .setQuality(75)
+                        .compressToBitmap(thumb_file_path);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                thumb_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                final byte[] byte_thumb = baos.toByteArray();
+
+
                 StorageReference filePath = myImageStorage.child("profile_images").child(currentUserId + ".jpg");
+
+                final StorageReference thumbnail_file_path = myImageStorage.child("profile_images").child("thumbs").child(currentUserId + ".jpg");
+
                 filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()){
-                            String downloadUrl = task.getResult().getDownloadUrl().toString();
-                            myUserDatabase.child("image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            final String downloadUrl = task.getResult().getDownloadUrl().toString();
+                            final UploadTask upTask = thumbnail_file_path.putBytes(byte_thumb);
+                            upTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> thumb_task) {
+                                    String thumb_download_url = thumb_task.getResult().getDownloadUrl().toString();
+
+
+                                    if (thumb_task.isSuccessful()){
+
+                                        Map updateHash = new HashMap();
+                                        updateHash.put("image", downloadUrl);
+                                        updateHash.put("thumb_image", thumb_download_url);
+
+
+                                        myUserDatabase.updateChildren(updateHash).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    myProgressDialog.dismiss();
+                                                    Toast.makeText(SettingsActivity.this, "image uploaded successfully", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    } else {
                                         myProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, "image uploaded successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, "error while uploading", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                             
-                            Toast.makeText(SettingsActivity.this, "working", Toast.LENGTH_SHORT).show();
                         }else{
                             myProgressDialog.dismiss();
                             Toast.makeText(SettingsActivity.this, "error while uploading", Toast.LENGTH_SHORT).show();
