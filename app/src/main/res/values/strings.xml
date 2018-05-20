@@ -42,4 +42,7 @@
     <string name="all_users">All Users</string>
     <string name="title_activity_users">UsersActivity</string>
     <string name="display_username">Display UserNAme</string>
+    <string name="send_friend_request">Send Friend Request</string>
+    <string name="total_friends">Total Friends</string>
+    <string name="decline_friend_request">Decline Friend Request</string>
 </resources>

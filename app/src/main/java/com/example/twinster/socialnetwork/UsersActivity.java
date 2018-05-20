@@ -1,5 +1,8 @@
 package com.example.twinster.socialnetwork;
 
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +14,11 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersActivity extends AppCompatActivity {
     Toolbar myToolBar;
@@ -51,6 +57,20 @@ public class UsersActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(UserViewHolder viewHolder, Users user, int position) {
                 viewHolder.setName(user.getName());
+                viewHolder.setImage(user.getThumb_image(), getApplicationContext());
+
+                final String user_id = getRef(position).getKey();
+
+                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent profileIntent = new Intent(UsersActivity.this,ProfileActivity.class);
+                        profileIntent.putExtra("user_id",user_id);
+                        startActivity(profileIntent);
+
+                    }
+                });
             }
         };
 
@@ -69,6 +89,14 @@ public class UsersActivity extends AppCompatActivity {
         public UserViewHolder(View itemView) {
             super(itemView);
             view = itemView;
+
+        }
+
+        public void setImage(String thumb_image, Context context) {
+
+            CircleImageView userImageView = (CircleImageView) view.findViewById(R.id.profileImgUsers);
+
+            Picasso.with(context).load(thumb_image).placeholder(R.drawable.defaultpic).into(userImageView);
 
         }
     }

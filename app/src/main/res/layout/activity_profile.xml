@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.twinster.socialnetwork.ProfileActivity"
+    >
+
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:src="@drawable/defaultpic"
+        />
+
+    <TextView
+        android:id="@+id/tvProfileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ivProfileImage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/display_name"
+        android:textSize="@dimen/cna_text_size"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/margin_top"
+        />
+
+    <TextView
+        android:id="@+id/tvTotalFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        android:text="@string/total_friends"
+        android:layout_marginBottom="@dimen/fab_margin"
+        app:layout_constraintBottom_toTopOf="@id/btSendFreindRequest"/>
+
+
+
+    <Button
+        android:id="@+id/btSendFreindRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvProfileName"
+        android:text="@string/send_friend_request"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="@dimen/bt_side_margin"
+        android:layout_marginStart="@dimen/bt_side_margin"
+        android:layout_marginTop="@dimen/bt_send_request_margin"
+        android:background="@color/colorPrimaryDark"
+        />
+
+    <Button
+        android:id="@+id/btDeclineFreindRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btSendFreindRequest"
+        android:text="@string/decline_friend_request"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="@dimen/bt_side_margin"
+        android:layout_marginStart="@dimen/bt_side_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@color/colorPrimaryDark"
+        />
+
+</android.support.constraint.ConstraintLayout>

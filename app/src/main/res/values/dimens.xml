@@ -22,4 +22,5 @@
     <dimen name="margin_top_users">20dp</dimen>
     <dimen name="name_height">50dp</dimen>
     <dimen name="users_list_name">20sp</dimen>
+    <dimen name="bt_send_request_margin">130dp</dimen>
 </resources>
