@@ -54,7 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final String user_id = getIntent().getStringExtra("user_id");
+        final String user_id = getIntent().getStringExtra(UsersActivity.user_id_intent_key);
 
         rootReference = FirebaseDatabase.getInstance().getReference();
 
@@ -337,4 +337,18 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        profileDatabase.child("online").setValue(true);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//
+//        profileDatabase.child("online").setValue(false);
+//    }
 }

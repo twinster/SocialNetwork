@@ -24,5 +24,26 @@
         android:layout_marginStart="30dp"
         android:text="@string/display_username"
         app:layout_constraintLeft_toRightOf="@+id/profileImgUsers"/>
+    
+    <ImageView
+        android:id="@+id/ivOnlineIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/online"
+        app:layout_constraintBottom_toBottomOf="@id/profileImgUsers"
+        app:layout_constraintRight_toRightOf="@id/profileImgUsers"
+        android:layout_marginBottom="@dimen/online_icon_margin"
+        android:layout_marginEnd="@dimen/online_icon_margin"
+        android:visibility="invisible"
+
+        />
+
+    <TextView
+        android:id="@+id/tvUserDate"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/name_height"
+        android:layout_marginStart="30dp"
+        app:layout_constraintLeft_toRightOf="@+id/profileImgUsers"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

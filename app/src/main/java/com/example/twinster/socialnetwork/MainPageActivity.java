@@ -13,12 +13,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainPageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ViewPager mainviewpager;
     private SectionsPagerAdapter mainpagesectionsadapter;
     private TabLayout mainpagetablayout;
+
+    private DatabaseReference dbUser;
 
     private Toolbar myToolBar;
 
@@ -28,6 +32,9 @@ public class MainPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
 
         mAuth = FirebaseAuth.getInstance();
+        dbUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+
+
         mainviewpager = (ViewPager) findViewById(R.id.mainpage_viewpager);
         mainpagesectionsadapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mainviewpager.setAdapter(mainpagesectionsadapter);
@@ -41,6 +48,19 @@ public class MainPageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Main Page");
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        dbUser.child("online").setValue(true);
+    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//
+//        dbUser.child("online").setValue(false);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,6 +77,7 @@ public class MainPageActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.main_logout_button){
             FirebaseAuth.getInstance().signOut();
+            dbUser.child("online").setValue(false);
             Intent mainIntent = new Intent(MainPageActivity.this, MainActivity.class);
             startActivity(mainIntent);
             finish();

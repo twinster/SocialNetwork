@@ -26,6 +26,7 @@ public class UsersActivity extends AppCompatActivity {
     Toolbar myToolBar;
     private RecyclerView rvUsersList;
     private DatabaseReference usersDatabase;
+    public static String user_id_intent_key =  "user_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class UsersActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent profileIntent = new Intent(UsersActivity.this,ProfileActivity.class);
-                        profileIntent.putExtra("user_id",user_id);
+                        profileIntent.putExtra(user_id_intent_key,user_id);
                         startActivity(profileIntent);
 
                     }
