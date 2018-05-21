@@ -115,9 +115,9 @@ public class ProfileActivity extends AppCompatActivity {
                         if(dataSnapshot.hasChild(user_id)){
 
                             String req_type = dataSnapshot.child(user_id).child("request_type").getValue().toString();
-                            if(req_type.equals("recieved")){
+                            if(req_type.equals("received")){
 
-                                currentState = "req_recieved";
+                                currentState = "req_received";
                                 btSendRequest.setText("Accept Friend Request");
 
                                 btDecline.setVisibility(View.VISIBLE);
@@ -241,7 +241,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 }
 
-                if(currentState.equals("req_recieved")){
+                if(currentState.equals("req_received")){
 
                     final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
 
@@ -250,16 +250,19 @@ public class ProfileActivity extends AppCompatActivity {
                     friendsMap.put("Friends/" + user_id + "/" + currentUser.getUid() + "/date",currentDate);
 
                     friendsMap.put("Friend_req/" + currentUser.getUid() + "/" + user_id,null);
-                    friendsMap.put("Friends_req/" + user_id + "/" + currentUser.getUid(),null);
+                    friendsMap.put("Friend_req/" + user_id + "/" + currentUser.getUid(),null);
                     rootReference.updateChildren(friendsMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                            if(databaseError != null){
+                            if(databaseError == null){
 
                                 btSendRequest.setEnabled(true);
                                 currentState = "friends";
                                 btSendRequest.setText("Unfriend this person");
+
+                                btDecline.setVisibility(View.INVISIBLE);
+                                btDecline.setEnabled(false);
 
                             } else {
 
@@ -274,15 +277,15 @@ public class ProfileActivity extends AppCompatActivity {
 
                 }
 
-                if (currentUser.equals("friends")){
+                if (currentState.equals("friends")){
                     Map unfriendMap = new HashMap();
-                    unfriendMap.put("Friend/" + currentUser.getUid() + "/" + user_id,null);
+                    unfriendMap.put("Friends/" + currentUser.getUid() + "/" + user_id,null);
                     unfriendMap.put("Friends/" + user_id + "/" + currentUser.getUid(),null);
                     rootReference.updateChildren(unfriendMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                            if(databaseError != null){
+                            if(databaseError == null){
 
                                 currentState = "not_friends";
                                 btSendRequest.setText("Send Friend Request");
