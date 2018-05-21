@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference friendsDatabase;
     private DatabaseReference notificationDatabase;
 
-    private DatabaseReference rootRefereance;
+    private DatabaseReference rootReference;
 
     private FirebaseUser currentUser;
 
@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         final String user_id = getIntent().getStringExtra("user_id");
 
-        rootRefereance = FirebaseDatabase.getInstance().getReference();
+        rootReference = FirebaseDatabase.getInstance().getReference();
 
         profileDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
         friendRequestDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
@@ -189,7 +189,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (currentState.equals("not_friends")) {
 
-                    DatabaseReference newnotificationReference = rootRefereance.child("notifications").child(user_id).push();
+                    DatabaseReference newnotificationReference = rootReference.child("notifications").child(user_id).push();
                     String newNotificationId = newnotificationReference.getKey();
 
                     HashMap<String,String> notificationData = new HashMap<>();
@@ -197,10 +197,10 @@ public class ProfileActivity extends AppCompatActivity {
                     notificationData.put("type","request");
 
                     Map map = new HashMap();
-                    map.put("Friend_req/" + currentUser.getUid() + "/" + user_id + "request_type","sent");
-                    map.put("Friend_req/" + user_id + "/" + currentUser.getUid() + "request_type","received");
+                    map.put("Friend_req/" + currentUser.getUid() + "/" + user_id + "/request_type","sent");
+                    map.put("Friend_req/" + user_id + "/" + currentUser.getUid() + "/request_type","received");
                     map.put("notifications/" + user_id + "/" + newNotificationId,notificationData);
-                    rootRefereance.updateChildren(map, new DatabaseReference.CompletionListener() {
+                    rootReference.updateChildren(map, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
@@ -251,7 +251,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     friendsMap.put("Friend_req/" + currentUser.getUid() + "/" + user_id,null);
                     friendsMap.put("Friends_req/" + user_id + "/" + currentUser.getUid(),null);
-                    rootRefereance.updateChildren(friendsMap, new DatabaseReference.CompletionListener() {
+                    rootReference.updateChildren(friendsMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
@@ -278,7 +278,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Map unfriendMap = new HashMap();
                     unfriendMap.put("Friend/" + currentUser.getUid() + "/" + user_id,null);
                     unfriendMap.put("Friends/" + user_id + "/" + currentUser.getUid(),null);
-                    rootRefereance.updateChildren(unfriendMap, new DatabaseReference.CompletionListener() {
+                    rootReference.updateChildren(unfriendMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
