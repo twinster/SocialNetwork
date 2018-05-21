@@ -1,5 +1,6 @@
 package com.example.twinster.socialnetwork;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.support.v4.app.NotificationCompat;
 
@@ -16,9 +17,9 @@ public class MessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        Notification.Builder builder = new Notification.Builder(MessagingService.this)
                 .setSmallIcon(R.mipmap.notification)
-                .setContentTitle("Friend Request")
+                .setContentTitle("new Friend Request")
                 .setContentText("You`ve Received New Notification");
 
         int notificationId = (int) System.currentTimeMillis();
