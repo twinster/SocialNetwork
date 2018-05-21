@@ -243,41 +243,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if(currentState.equals("req_received")){
 
-                    btDecline.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Map friendsMap = new HashMap();
-
-                            friendsMap.put("Friend_req/" + currentUser.getUid() + "/" + user_id,null);
-                            friendsMap.put("Friend_req/" + user_id + "/" + currentUser.getUid(),null);
-
-                            rootReference.updateChildren(friendsMap, new DatabaseReference.CompletionListener() {
-                                @Override
-                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-
-                                    if(databaseError == null){
-
-                                        btSendRequest.setEnabled(true);
-                                        currentState = "not_friends";
-                                        btSendRequest.setText("Send Friend Request");
-
-                                        btDecline.setVisibility(View.INVISIBLE);
-                                        btDecline.setEnabled(false);
-
-                                    } else {
-
-                                        String error = databaseError.getMessage();
-                                        Toast.makeText(ProfileActivity.this,error,Toast.LENGTH_SHORT).show();
-
-                                    }
-
-
-                                }
-                            });
-
-                        }
-                    });
-
 
                     final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
 
@@ -337,5 +302,39 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        btDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map friendsMap = new HashMap();
+
+                friendsMap.put("Friend_req/" + currentUser.getUid() + "/" + user_id,null);
+                friendsMap.put("Friend_req/" + user_id + "/" + currentUser.getUid(),null);
+
+                rootReference.updateChildren(friendsMap, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                        if(databaseError == null){
+
+                            btSendRequest.setEnabled(true);
+                            currentState = "not_friends";
+                            btSendRequest.setText("Send Friend Request");
+
+                            btDecline.setVisibility(View.INVISIBLE);
+                            btDecline.setEnabled(false);
+
+                        } else {
+
+                            String error = databaseError.getMessage();
+                            Toast.makeText(ProfileActivity.this,error,Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                    }
+                });
+
+            }
+        });
     }
 }
