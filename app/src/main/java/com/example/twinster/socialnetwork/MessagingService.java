@@ -25,7 +25,8 @@ public class MessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.mipmap.notification)
                 .setContentTitle("new Friend Request")
                 .setContentText("You`ve Received New Notification")
-                .setSound(sound);
+                .setSound(sound)
+                .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 
         int notificationId = (int) System.currentTimeMillis();
 
