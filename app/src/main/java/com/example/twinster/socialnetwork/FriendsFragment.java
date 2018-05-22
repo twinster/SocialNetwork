@@ -173,7 +173,7 @@ public class FriendsFragment extends Fragment {
 
         public void setImage(final String thumb_image, final Context context) {
 
-            final CircleImageView userImageView = (CircleImageView) view.findViewById(R.id.profileImgUsers);
+            final CircleImageView userImageView =  view.findViewById(R.id.profileImgUsers);
 
             Picasso.with(context).load(thumb_image).
                     networkPolicy(NetworkPolicy.OFFLINE).
@@ -198,9 +198,9 @@ public class FriendsFragment extends Fragment {
 
 
             if (userOnline.equals("true")) {
-                ivOnlineIcon.setVisibility(View.INVISIBLE);
-            } else {
                 ivOnlineIcon.setVisibility(View.VISIBLE);
+            } else {
+                ivOnlineIcon.setVisibility(View.INVISIBLE);
             }
         }
 

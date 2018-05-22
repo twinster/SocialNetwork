@@ -21,15 +21,15 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:src="@drawable/add" />
+            android:src="@drawable/plusbutton" />
 
-        <TextView
-            android:id="@+id/tvMessage"
+        <EditText
+            android:id="@+id/etMessage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:background="@color/white"
-            android:text="TextView" />
+            android:hint="Enter Message" />
 
         <ImageButton
             android:id="@+id/ibSendIcon"
@@ -37,7 +37,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:src="@drawable/send" />
+            android:src="@drawable/sendbutton" />
 
     </LinearLayout>
 
