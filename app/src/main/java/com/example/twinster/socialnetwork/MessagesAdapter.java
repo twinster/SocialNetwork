@@ -52,7 +52,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-
+        myAuth = FirebaseAuth.getInstance();
         String current_user_id = myAuth.getCurrentUser().getUid();
         Messages c = messagesList.get(position);
         String from_user = c.getFrom();
