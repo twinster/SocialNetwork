@@ -6,7 +6,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorAccent">
 
@@ -16,7 +16,7 @@
             android:layout_height="@dimen/icon_size"
             android:src="@drawable/defaultpic"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/chatbar_topimage_marginend"/>
+            android:layout_marginEnd="@dimen/chatbar_topimage_marginend" />
 
         <TextView
             android:id="@+id/chat_toolbar_username"

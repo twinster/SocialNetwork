@@ -113,15 +113,15 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-               if(dataSnapshot.hasChild(chatuser)){
+               if(!dataSnapshot.hasChild(chatuser)){
 
                    Map chatAddMap = new HashMap();
                    chatAddMap.put("seen",false);
                    chatAddMap.put("timestamp", ServerValue.TIMESTAMP);
 
                    Map chatUserMap = new HashMap();
-                   chatUserMap.put("chat/" + currentUserId + "/" + chatuser ,chatAddMap);
-                   chatUserMap.put("chat/" + chatuser + "/" + currentUserId ,chatAddMap);
+                   chatUserMap.put("Chat/" + currentUserId + "/" + chatuser ,chatAddMap);
+                   chatUserMap.put("Chat/" + chatuser + "/" + currentUserId ,chatAddMap);
 
                    rootReference.updateChildren(chatUserMap, new DatabaseReference.CompletionListener() {
                        @Override
@@ -156,7 +156,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 String message = etMessage.getText().toString();
 
-                if (TextUtils.isEmpty(message)) {
+                if (!TextUtils.isEmpty(message)) {
 
                     String current_user_ref = "messages/" + currentUserId + "/" + chatuser;
                     String chat_user_ref = "messages/" + chatuser + "/" + currentUserId;
@@ -170,7 +170,7 @@ public class ChatActivity extends AppCompatActivity {
                     messageMap.put("message",message);
                     messageMap.put("seen",false);
                     messageMap.put("type","text");
-                    messageMap.put("/time",ServerValue.TIMESTAMP);
+                    messageMap.put("time",ServerValue.TIMESTAMP);
 
                     Map messageUserMap = new HashMap();
                     messageUserMap.put(current_user_ref + "/" + push_id, messageMap);
