@@ -36,7 +36,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_out">Log Out</string>
-    <string name="display_name">Display Name</string>
     <string name="change_image">Change Image</string>
     <string name="account_settings">Account Settings</string>
     <string name="all_users">All Users</string>
@@ -47,4 +46,6 @@
     <string name="decline_friend_request">Decline Friend Request</string>
     <string name="friend_request_sent">Send Friend Request</string>
     <string name="last_seen">Last seen</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="display_name">Display Name</string>
 </resources>
