@@ -24,6 +24,17 @@
     <dimen name="users_list_name">20sp</dimen>
     <dimen name="bt_send_request_margin">130dp</dimen>
     <dimen name="online_icon_margin">10dp</dimen>
+    <dimen name="circleview_marginstart_dp">10dp</dimen>
+    <dimen name="usersrow_tvusername_marginstart">30dp</dimen>
+    <dimen name="onlinestatus_width">20dp</dimen>
+    <dimen name="onlinestatus_height">20dp</dimen>
+    <dimen name="usersrow_textview_marginstart">30dp</dimen>
+    <dimen name="chatbar_topimage_width">36dp</dimen>
+    <dimen name="chatbar_topimage_height">36dp</dimen>
+    <dimen name="chatbar_topimage_marginend">10dp</dimen>
+    <dimen name="display_name_textsize">18sp</dimen>
+    <dimen name="lastseen_textsize">13sp</dimen>
+    <dimen name="recyvlerview_margintop">56dp</dimen>
     <dimen name="icon_size">50dp</dimen>
     <dimen name="logo_height">100dp</dimen>
     <dimen name="profile_image_height">250dp</dimen>

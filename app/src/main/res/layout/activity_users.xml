@@ -13,7 +13,7 @@
         android:id="@+id/rvUsersList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="@dimen/recyvlerview_margintop"
         app:layout_constraintTop_toBottomOf="@id/users_tool_bar" />
 
 </android.support.constraint.ConstraintLayout>

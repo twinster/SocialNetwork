@@ -13,7 +13,7 @@
         android:layout_alignParentStart="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/circleview_marginstart_dp"
         android:src="@drawable/defaultpic" />
 
     <TextView
@@ -21,14 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/name_height"
         android:textSize="@dimen/users_list_name"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="@dimen/usersrow_tvusername_marginstart"
         android:text="@string/display_username"
         app:layout_constraintLeft_toRightOf="@+id/profileImgUsers"/>
     
     <ImageView
         android:id="@+id/ivOnlineIcon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/onlinestatus_width"
+        android:layout_height="@dimen/onlinestatus_height"
         android:src="@drawable/online"
         app:layout_constraintBottom_toBottomOf="@id/profileImgUsers"
         app:layout_constraintRight_toRightOf="@id/profileImgUsers"
@@ -42,7 +42,7 @@
         android:id="@+id/tvUserDate"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/name_height"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="@dimen/usersrow_textview_marginstart"
         app:layout_constraintLeft_toRightOf="@+id/profileImgUsers"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
