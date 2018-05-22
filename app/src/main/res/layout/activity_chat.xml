@@ -8,12 +8,23 @@
 
     <include layout="@layout/chat_bar" android:id="@+id/chat_toolbar"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chatMessagesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/chat_toolbar"
+
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="10"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout">
 
         <ImageButton
             android:id="@+id/ibPlusIcon"
@@ -40,5 +51,7 @@
             android:src="@drawable/sendbutton" />
 
     </LinearLayout>
+
+
 
 </RelativeLayout>

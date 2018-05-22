@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:id="@+id/message_row"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/smsPersonImg"
+        android:src="@drawable/defaultpic"
+        android:layout_width="56dp"
+        android:layout_height="56dp" />
+
+    <TextView
+        android:id="@+id/tvSMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sms_background"
+        android:layout_alignBottom="@+id/smsPersonImg"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:layout_toEndOf="@+id/smsPersonImg"
+        android:text="first message " />
+</RelativeLayout>
