@@ -14,16 +14,17 @@ public class Messages {
 
 
 
-    public Messages(String message, Boolean seen, Long time, String type, String from){
-        this.message = message;
-        this.seen = seen;
-        this.time = time;
-        this.type = type;
-        this.from = from;
+    public Messages(String message, Boolean seen, Long time, String type){
+        this.setMessage(message);
+        this.setSeen(seen);
+        this.setTime(time);
+        this.setType(type);
 
     }
 
     public Messages(){}
+
+    public Messages(String from){ this.setFrom(from); }
 
 
     public String getMessage() {
@@ -44,5 +45,25 @@ public class Messages {
 
     public String getFrom() {
         return from;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setSeen(Boolean seen) {
+        this.seen = seen;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }
