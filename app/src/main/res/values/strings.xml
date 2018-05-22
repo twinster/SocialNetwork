@@ -46,4 +46,6 @@
     <string name="total_friends">Total Friends</string>
     <string name="decline_friend_request">Decline Friend Request</string>
     <string name="friend_request_sent">Send Friend Request</string>
+    <string name="display_name">Display Name</string>
+    <string name="last_seen">Last seen</string>
 </resources>
