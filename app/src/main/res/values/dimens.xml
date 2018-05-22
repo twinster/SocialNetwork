@@ -38,4 +38,6 @@
     <dimen name="icon_size">50dp</dimen>
     <dimen name="logo_height">100dp</dimen>
     <dimen name="profile_image_height">250dp</dimen>
+    <dimen name="lastseen_text_size">13sp</dimen>
+    <dimen name="displayname_text_size">18sp</dimen>
 </resources>

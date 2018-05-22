@@ -12,28 +12,25 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/chat_toolbar_iamge"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:src="@drawable/defaultpic"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="@dimen/chatbar_topimage_marginend"/>
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="7dp"/>
+            android:layout_marginEnd="@dimen/chatbar_topimage_marginend"/>
 
         <TextView
             android:id="@+id/chat_toolbar_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Display Name"/>
+            android:textSize="@dimen/displayname_text_size"
+            android:text="@string/display_name"/>
 
         <TextView
             android:id="@+id/chat_toolbar_userslasteen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:text="Last seen"
+            android:textSize="@dimen/lastseen_text_size"
+            android:text="@string/last_seen"
             android:layout_below="@id/chat_toolbar_username"/>
 
     </RelativeLayout>
