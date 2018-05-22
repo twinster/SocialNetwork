@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
     android:background="@color/colorAccent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/chat_toolbar_iamge"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/defaultpic"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorAccent">
 
-    <TextView
-        android:id="@+id/chat_toolbar_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="Display Name"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_toolbar_iamge"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/defaultpic"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"/>
 
-    <TextView
-        android:id="@+id/chat_toolbar_userslasteen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:text="Last seen"
-        android:layout_below="@id/chat_toolbar_username"/>
+        <TextView
+            android:id="@+id/chat_toolbar_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Display Name"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/chat_toolbar_userslasteen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="Last seen"
+            android:layout_below="@id/chat_toolbar_username"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>
