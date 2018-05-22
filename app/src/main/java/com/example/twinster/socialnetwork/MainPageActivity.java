@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 public class MainPageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -52,7 +53,7 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        dbUser.child("online").setValue(true);
+        dbUser.child("online").setValue("true");
     }
 //
 //    @Override
@@ -77,7 +78,7 @@ public class MainPageActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.main_logout_button){
             FirebaseAuth.getInstance().signOut();
-            dbUser.child("online").setValue(false);
+            dbUser.child("online").setValue(ServerValue.TIMESTAMP);
             Intent mainIntent = new Intent(MainPageActivity.this, MainActivity.class);
             startActivity(mainIntent);
             finish();

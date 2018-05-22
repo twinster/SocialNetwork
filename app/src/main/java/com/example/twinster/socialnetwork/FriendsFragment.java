@@ -1,7 +1,10 @@
 package com.example.twinster.socialnetwork;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -80,20 +83,57 @@ public class FriendsFragment extends Fragment {
             protected void populateViewHolder(final FriendsViewHolder viewHolder, Friends friend, int position) {
                 viewHolder.setDate(friend.getDate());
 
-                String list_user_id = getRef(position).getKey();
+                final String list_user_id = getRef(position).getKey();
 
                 dbUsers.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String displayName = dataSnapshot.child("name").getValue().toString();
+                        final String displayName = dataSnapshot.child("name").getValue().toString();
                         String thumbImage = dataSnapshot.child("thumb_image").getValue().toString();
 
                         if (dataSnapshot.hasChild("online")){
-                            Boolean userOnline = (boolean) dataSnapshot.child("online").getValue();
+                            String userOnline =  dataSnapshot.child("online").getValue().toString();
                             viewHolder.setUserOnline(userOnline);
                         }
                         viewHolder.setName(displayName);
                         viewHolder.setImage(thumbImage, getContext());
+
+
+                        viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                CharSequence options[] = new CharSequence[]{"Open Profile", "send message"};
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("Select Options");
+                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int position) {
+
+                                        if(position == 0){
+
+                                            Intent profileIntent = new Intent(getContext(),ProfileActivity.class);
+                                            profileIntent.putExtra("user_id",list_user_id);
+                                            startActivity(profileIntent);
+                                        }
+
+                                        if(position == 1){
+
+                                            Intent chatIntent = new Intent(getContext(),ChatActivity.class);
+                                            chatIntent.putExtra("user_id",list_user_id);
+                                            chatIntent.putExtra("user_name",displayName);
+                                            startActivity(chatIntent);
+
+                                        }
+
+                                    }
+                                });
+
+                                builder.show();
+
+                            }
+                        });
                     }
 
                     @Override
@@ -154,12 +194,13 @@ public class FriendsFragment extends Fragment {
 
         }
 
-        public void setUserOnline(boolean userOnline){
-            if (userOnline){
-                ivOnlineIcon.setVisibility(View.VISIBLE);
-            }
-            else{
+        public void setUserOnline(String userOnline){
+
+
+            if (userOnline.equals("true")) {
                 ivOnlineIcon.setVisibility(View.INVISIBLE);
+            } else {
+                ivOnlineIcon.setVisibility(View.VISIBLE);
             }
         }
 
