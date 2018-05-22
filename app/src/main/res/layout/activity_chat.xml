@@ -17,8 +17,8 @@
 
         <ImageButton
             android:id="@+id/ibPlusIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:layout_weight="1"
             android:background="@color/white"
             android:src="@drawable/plusbutton" />
@@ -29,12 +29,12 @@
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:background="@color/white"
-            android:hint="Enter Message" />
+            android:hint="@string/enter_message" />
 
         <ImageButton
             android:id="@+id/ibSendIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:layout_weight="1"
             android:background="@color/white"
             android:src="@drawable/sendbutton" />

@@ -24,4 +24,7 @@
     <dimen name="users_list_name">20sp</dimen>
     <dimen name="bt_send_request_margin">130dp</dimen>
     <dimen name="online_icon_margin">10dp</dimen>
+    <dimen name="icon_size">50dp</dimen>
+    <dimen name="logo_height">100dp</dimen>
+    <dimen name="profile_image_height">250dp</dimen>
 </resources>

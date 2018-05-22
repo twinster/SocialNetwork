@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/ivProfileImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/profile_image_height"
         android:src="@drawable/defaultpic"
         />
 

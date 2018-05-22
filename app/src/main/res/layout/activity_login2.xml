@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="@string/forgont_password"
         android:clickable="true"
+        android:focusable="true"
         android:onClick="recoverPassword"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintLeft_toLeftOf="parent"
