@@ -201,15 +201,18 @@ public class ChatActivity extends AppCompatActivity {
                     messageMap.put("seen",false);
                     messageMap.put("type","text");
                     messageMap.put("time",ServerValue.TIMESTAMP);
+                    messageMap.put("from", currentUserId);
 
                     Map messageUserMap = new HashMap();
                     messageUserMap.put(current_user_ref + "/" + push_id, messageMap);
                     messageUserMap.put(chat_user_ref + "/" + push_id, messageMap);
 
+                    etMessage.setText("");
+
                     rootReference.updateChildren(messageUserMap, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            Log.d("CHAT_LOG",databaseError.getMessage().toString());
+                            //Log.d("CHAT_LOG",databaseError.getMessage().toString());
                         }
                     });
                 }

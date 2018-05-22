@@ -1,11 +1,14 @@
 package com.example.twinster.socialnetwork;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder>{
     private List<Messages> messagesList;
+    private FirebaseAuth myAuth;
     public MessagesAdapter(List<Messages> messagesList){
         this.messagesList = messagesList;
     }
@@ -48,7 +52,19 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+
+        String current_user_id = myAuth.getCurrentUser().getUid();
         Messages c = messagesList.get(position);
+        String from_user = c.getFrom();
+
+        if (from_user.equals(current_user_id)) {
+            holder.messageText.setBackgroundColor(Color.BLUE);
+            holder.messageText.setTextColor(Color.WHITE);
+        }
+        else{
+            holder.messageText.setBackgroundColor(Color.GRAY);
+            holder.messageText.setTextColor(Color.BLACK);
+        }
         holder.messageText.setText(c.getMessage());
     }
 }
