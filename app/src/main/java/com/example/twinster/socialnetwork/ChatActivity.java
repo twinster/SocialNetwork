@@ -33,6 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -142,7 +145,24 @@ public class ChatActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 String online = dataSnapshot.child("online").getValue().toString();
-                String image = dataSnapshot.child("image").getValue().toString();
+                final String image = dataSnapshot.child("image").getValue().toString();
+
+                Picasso.with(chatToolBarImage.getContext()).load(image).
+                        networkPolicy(NetworkPolicy.OFFLINE).
+                        placeholder(R.drawable.defaultpic).
+                        into(chatToolBarImage, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError() {
+                                Picasso.with(chatToolBarImage.getContext()).load(image).
+                                        placeholder(R.drawable.defaultpic).
+                                        into(chatToolBarImage);
+                            }
+                        });
 
                 if (online.equals("true")) {
 
@@ -267,6 +287,17 @@ public class ChatActivity extends AppCompatActivity {
                 loadMoreMessages();
             }
         });
+
+        chatToolBarImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profileIntent = new Intent(ChatActivity.this, ProfileActivity.class);
+                profileIntent.putExtra("user_id",chatuser);
+                startActivity(profileIntent);
+            }
+        });
+
+
 
     }
 
