@@ -17,24 +17,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView"
         android:layout_toRightOf="@+id/smsPersonImg"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
         android:text="Display Name" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSMS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/senderName"
-        android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/smsPersonImg"
-        android:layout_toRightOf="@+id/smsPersonImg"
+        android:layout_below="@id/senderName"
         android:layout_marginTop="5dp"
-        android:text="Message Text"
+        android:text="first message " />
 
-        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,16 +40,5 @@
         android:layout_centerHorizontal="true"
         android:text="12:00" />
     
-    <!--<TextView-->
-        <!--android:id="@+id/tvSMS"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/sms_background"-->
-        <!--android:layout_alignBottom="@+id/smsPersonImg"-->
-        <!--android:layout_marginBottom="15dp"-->
-        <!--android:layout_marginStart="20dp"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:padding="5dp"-->
-        <!--android:layout_toEndOf="@+id/smsPersonImg"-->
-        <!--android:text="first message " />-->
+
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.twinster.socialnetwork;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
@@ -49,12 +51,19 @@ public class ChatActivity extends AppCompatActivity {
     private EditText etMessage;
 
     private RecyclerView smsList;
+    private SwipeRefreshLayout refreshLayout;
 
     private final List<Messages> messagesList = new ArrayList<>();
 
     private LinearLayoutManager linearLayoutManager;
 
     private MessagesAdapter messagesAdapter;
+
+    private static final int TOTAL_ITEMS_TO_LOAD = 10;
+    private int currentPage = 1;
+
+    private int itemPosition = 0;
+    private String lastKey = "";
 
 
     @Override
@@ -96,6 +105,7 @@ public class ChatActivity extends AppCompatActivity {
         messagesAdapter = new MessagesAdapter(messagesList);
 
         smsList = findViewById(R.id.chatMessagesList);
+        refreshLayout = findViewById(R.id.chatSwipeRefreshLayout);
 
         linearLayoutManager = new LinearLayoutManager(this);
 
@@ -220,15 +230,96 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                currentPage++;
+
+                itemPosition = 0;
+
+                loadMoreMessages();
+            }
+        });
+
+    }
+
+    private void loadMoreMessages() {
+        DatabaseReference messageRef = rootReference.child("messages").child(currentUserId).child(chatuser);
+
+        Query messageQuery = messageRef.orderByKey().endAt(lastKey).limitToLast(10);
+
+        messageQuery.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                Messages messages = dataSnapshot.getValue(Messages.class);
+
+                messagesList.add(itemPosition++,messages);
+
+                if(itemPosition == 1){
+                    String messageKey = dataSnapshot.getKey();
+
+                    lastKey = messageKey;
+                }
+
+
+                messagesAdapter.notifyDataSetChanged();
+
+                refreshLayout.setRefreshing(false);
+
+                linearLayoutManager.scrollToPositionWithOffset(10,0);
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private void lostMessage() {
-        rootReference.child("messages").child(currentUserId).child(chatuser).addChildEventListener(new ChildEventListener() {
+
+        DatabaseReference messageRef = rootReference.child("messages").child(currentUserId).child(chatuser);
+
+        Query messageQuery = messageRef.limitToLast(currentPage * TOTAL_ITEMS_TO_LOAD);
+
+        messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Messages messages = dataSnapshot.getValue(Messages.class);
+
+                itemPosition++;
+
+                if(itemPosition == 1){
+                    String messageKey = dataSnapshot.getKey();
+
+                    lastKey = messageKey;
+                }
+
                 messagesList.add(messages);
                 messagesAdapter.notifyDataSetChanged();
+
+                smsList.scrollToPosition(messagesList.size() - 1);
+
+                refreshLayout.setRefreshing(false);
             }
 
             @Override
