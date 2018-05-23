@@ -77,24 +77,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         userDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
+                String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
                 Picasso.with(holder.profileImg.getContext()).load(thumb_image).
-                        networkPolicy(NetworkPolicy.OFFLINE).
                         placeholder(R.drawable.defaultpic).
-                        into(holder.profileImg, new Callback() {
-                            @Override
-                            public void onSuccess() {
-
-                            }
-
-                            @Override
-                            public void onError() {
-                                Picasso.with(holder.profileImg.getContext()).load(thumb_image).
-                                        placeholder(R.drawable.defaultpic).
-                                        into(holder.profileImg);
-                            }
-                        });
+                        into(holder.profileImg);
             }
 
             @Override
@@ -109,22 +96,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }else{
             holder.messageText.setVisibility(View.INVISIBLE);
 
-            Picasso.with(holder.profileImg.getContext()).load(c.getMessage()).
-                    networkPolicy(NetworkPolicy.OFFLINE).
+            holder.ivImageMessage.setVisibility(View.VISIBLE);
+
+            Picasso.with(holder.ivImageMessage.getContext()).load(c.getMessage()).
                     placeholder(R.drawable.defaultpic).
-                    into(holder.profileImg, new Callback() {
-                        @Override
-                        public void onSuccess() {
-
-                        }
-
-                        @Override
-                        public void onError() {
-                            Picasso.with(holder.profileImg.getContext()).load(c.getMessage()).
-                                    placeholder(R.drawable.defaultpic).
-                                    into(holder.profileImg);
-                        }
-                    });
+                    into(holder.ivImageMessage);
         }
 
         if (from_user.equals(current_user_id)) {

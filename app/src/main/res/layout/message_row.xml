@@ -23,7 +23,7 @@
 
     <ImageView
         android:id="@+id/ivImageMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvSMS"
         android:layout_toEndOf="@id/smsPersonImg"/>
