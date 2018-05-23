@@ -10,18 +10,19 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/chatSwipeRefreshLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@id/chat_toolbar">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/chatMessagesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/chat_toolbar"
-        />
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/chatbar_height">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/chatMessagesList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentStart="false"
+            android:layout_below="@id/chat_toolbar" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
