@@ -2,6 +2,7 @@ package com.example.twinster.socialnetwork;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +22,9 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -50,12 +54,14 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         public TextView messageText;
         public CircleImageView profileImg;
         public ImageView ivImageMessage;
+        public TextView tvMessageTIme;
 
         public MessageViewHolder(View view){
             super(view);
             messageText = view.findViewById(R.id.tvSMS);
             profileImg = view.findViewById(R.id.smsPersonImg);
             ivImageMessage = view.findViewById(R.id.ivImageMessage);
+            tvMessageTIme = view.findViewById(R.id.tvMessageTIme);
         }
 
     }
@@ -72,6 +78,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         final Messages c = messagesList.get(position);
         String from_user = c.getFrom();
         String message_type = c.getType();
+        Long messageTime = c.getTime();
 
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(from_user);
         userDatabase.addValueEventListener(new ValueEventListener() {
@@ -90,6 +97,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             }
         });
 
+        Date date = new Date(messageTime);
+        DateFormat formatter = new SimpleDateFormat("HH:mm");
+        String timeFormatted = formatter.format(date);
+
+        holder.tvMessageTIme.setText(timeFormatted);
+
+
         if (message_type.equals("text")){
             holder.messageText.setText(c.getMessage());
             holder.ivImageMessage.setVisibility(View.INVISIBLE);
@@ -99,8 +113,21 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             holder.ivImageMessage.setVisibility(View.VISIBLE);
 
             Picasso.with(holder.ivImageMessage.getContext()).load(c.getMessage()).
+                    networkPolicy(NetworkPolicy.OFFLINE).
                     placeholder(R.drawable.defaultpic).
-                    into(holder.ivImageMessage);
+                    into(holder.ivImageMessage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(holder.ivImageMessage.getContext()).load(c.getMessage()).
+                                    placeholder(R.drawable.defaultpic).
+                                    into(holder.ivImageMessage);
+                        }
+                    });
         }
 
         if (from_user.equals(current_user_id)) {
