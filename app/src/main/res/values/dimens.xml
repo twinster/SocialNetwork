@@ -40,4 +40,5 @@
     <dimen name="profile_image_height">250dp</dimen>
     <dimen name="lastseen_text_size">13sp</dimen>
     <dimen name="displayname_text_size">18sp</dimen>
+    <dimen name="chatbar_height">110dp</dimen>
 </resources>
