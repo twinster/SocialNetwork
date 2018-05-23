@@ -7,10 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder>{
     private List<Messages> messagesList;
     private FirebaseAuth myAuth;
+    private DatabaseReference userDatabase;
     public MessagesAdapter(List<Messages> messagesList){
         this.messagesList = messagesList;
     }
@@ -39,10 +49,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     public class MessageViewHolder extends RecyclerView.ViewHolder{
         public TextView messageText;
         public CircleImageView profileImg;
+        public ImageView ivImageMessage;
+
         public MessageViewHolder(View view){
             super(view);
             messageText = view.findViewById(R.id.tvSMS);
             profileImg = view.findViewById(R.id.smsPersonImg);
+            ivImageMessage = view.findViewById(R.id.ivImageMessage);
         }
 
     }
@@ -53,11 +66,66 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MessageViewHolder holder, int position) {
         myAuth = FirebaseAuth.getInstance();
         String current_user_id = myAuth.getCurrentUser().getUid();
-        Messages c = messagesList.get(position);
+        final Messages c = messagesList.get(position);
         String from_user = c.getFrom();
+        String message_type = c.getType();
+
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(from_user);
+        userDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
+
+                Picasso.with(holder.profileImg.getContext()).load(thumb_image).
+                        networkPolicy(NetworkPolicy.OFFLINE).
+                        placeholder(R.drawable.defaultpic).
+                        into(holder.profileImg, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError() {
+                                Picasso.with(holder.profileImg.getContext()).load(thumb_image).
+                                        placeholder(R.drawable.defaultpic).
+                                        into(holder.profileImg);
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        if (message_type.equals("text")){
+            holder.messageText.setText(c.getMessage());
+            holder.ivImageMessage.setVisibility(View.INVISIBLE);
+        }else{
+            holder.messageText.setVisibility(View.INVISIBLE);
+
+            Picasso.with(holder.profileImg.getContext()).load(c.getMessage()).
+                    networkPolicy(NetworkPolicy.OFFLINE).
+                    placeholder(R.drawable.defaultpic).
+                    into(holder.profileImg, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(holder.profileImg.getContext()).load(c.getMessage()).
+                                    placeholder(R.drawable.defaultpic).
+                                    into(holder.profileImg);
+                        }
+                    });
+        }
 
         if (from_user.equals(current_user_id)) {
             holder.messageText.setBackgroundColor(Color.BLUE);
@@ -68,5 +136,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             holder.messageText.setTextColor(Color.BLACK);
         }
         holder.messageText.setText(c.getMessage());
+
+
     }
 }
