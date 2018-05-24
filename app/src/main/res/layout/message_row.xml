@@ -18,8 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/smsPersonImg"
-        android:layout_marginTop="5dp"
-        android:text="first message " />
+        android:text="@string/first_message"
+        android:layout_below="@id/tvMessageTIme"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/sms_background"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        />
 
     <ImageView
         android:id="@+id/ivImageMessage"
@@ -36,7 +41,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
-        android:text="12:00" />
+        android:layout_toEndOf="@+id/smsPersonImg"
+        android:layout_marginStart="10dp"
+        android:text="@string/_12_00"
+        />
 
 
 </RelativeLayout>

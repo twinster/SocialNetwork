@@ -48,4 +48,6 @@
     <string name="last_seen">Last seen</string>
     <string name="enter_message">Enter Message</string>
     <string name="display_name">Display Name</string>
+    <string name="_12_00">12:00</string>
+    <string name="first_message">first message</string>
 </resources>
