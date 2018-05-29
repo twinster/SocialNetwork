@@ -67,14 +67,13 @@
             android:id="@+id/btSignUp"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/input_height"
-            android:layout_marginStart="196dp"
             android:layout_marginTop="@dimen/next_margin_top"
             android:background="@color/colorAccent"
-            android:elevation="0dp"
             android:text="@string/sign_up"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etPassword" />
+            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            />
+        <!--android:elevation="0dp"-->
 
     </android.support.constraint.ConstraintLayout>
 

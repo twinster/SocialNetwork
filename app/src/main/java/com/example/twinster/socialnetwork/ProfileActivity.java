@@ -75,8 +75,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading Profile Data");
-        progressDialog.setMessage("Please wait while loading the user data");
+        progressDialog.setTitle(getString(R.string.loading_profile_data));
+        progressDialog.setMessage(getString(R.string.wait_while_loading_user_data));
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
@@ -118,7 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
                             if(req_type.equals("received")){
 
                                 currentState = "req_received";
-                                btSendRequest.setText("Accept Friend Request");
+                                btSendRequest.setText(R.string.accept_friend_request);
 
                                 btDecline.setVisibility(View.VISIBLE);
                                 btDecline.setEnabled(true);
@@ -126,7 +126,7 @@ public class ProfileActivity extends AppCompatActivity {
                             } else if(req_type.equals("sent")) {
 
                                     currentState = "req_sent";
-                                    btSendRequest.setText("Cancel Friend Request");
+                                    btSendRequest.setText(R.string.cancel_friend_request);
 
                             }
 
@@ -142,7 +142,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     if(dataSnapshot.hasChild(user_id)){
 
                                         currentState = "friends";
-                                        btSendRequest.setText("Unfriend this person");
+                                        btSendRequest.setText(R.string.unfriend_this_person);
 
                                         btDecline.setVisibility(View.INVISIBLE);
                                         btDecline.setEnabled(false);
@@ -206,12 +206,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                             if(databaseError != null){
 
-                                Toast.makeText(ProfileActivity.this,"there were some error while sending request",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, R.string.error_while_sending_request,Toast.LENGTH_SHORT).show();
 
                             }
                             btSendRequest.setEnabled(true);
                             currentState = "req_sent";
-                            btSendRequest.setText("Cancel Friend Request");
+                            btSendRequest.setText(R.string.cancel_friend_request);
 
                         }
                     });
@@ -231,7 +231,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                     btSendRequest.setEnabled(true);
                                     currentState = "not_friends";
-                                    btSendRequest.setText("Send Friend Request");
+                                    btSendRequest.setText(R.string.send_friend_request);
 
                                 }
                             });
@@ -260,7 +260,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 btSendRequest.setEnabled(true);
                                 currentState = "friends";
-                                btSendRequest.setText("Unfriend this person");
+                                btSendRequest.setText(R.string.unfriend_this_person);
 
                                 btDecline.setVisibility(View.INVISIBLE);
                                 btDecline.setEnabled(false);
@@ -289,7 +289,7 @@ public class ProfileActivity extends AppCompatActivity {
                             if(databaseError == null){
 
                                 currentState = "not_friends";
-                                btSendRequest.setText("Send Friend Request");
+                                btSendRequest.setText(R.string.send_friend_request);
 
                             } else {
                                 String error = databaseError.getMessage();
@@ -318,7 +318,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             btSendRequest.setEnabled(true);
                             currentState = "not_friends";
-                            btSendRequest.setText("Send Friend Request");
+                            btSendRequest.setText(R.string.send_friend_request);
 
                             btDecline.setVisibility(View.INVISIBLE);
                             btDecline.setEnabled(false);

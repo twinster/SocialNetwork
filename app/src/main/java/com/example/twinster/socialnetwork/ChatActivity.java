@@ -166,7 +166,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 if (online.equals("true")) {
 
-                    chatToolBarLastseen.setText("Online");
+                    chatToolBarLastseen.setText(R.string.online);
                 } else {
 
                     getTimeAgo getTimeAgo = new getTimeAgo();

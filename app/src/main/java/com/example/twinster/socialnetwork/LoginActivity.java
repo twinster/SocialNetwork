@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         myToolBar = (Toolbar) findViewById(R.id.login_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle(R.string.login);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
@@ -64,10 +64,9 @@ public class LoginActivity extends AppCompatActivity {
             Intent login2 = new Intent(LoginActivity.this, Login2Activity.class);
             login2.putExtra(email_key,etEmail.getText().toString());
             startActivity(login2);
-            finish();
         }
         else {
-            Toast.makeText(LoginActivity.this, "Please fill email field",Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, R.string.fill_email_field,Toast.LENGTH_LONG).show();
         }
 
     }
@@ -78,13 +77,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Recovery Message Sent To Email",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, R.string.recovery_message_sent_to_email,Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                    finish();
+
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, "You tried many times, Try again later",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, R.string.try_again,Toast.LENGTH_LONG).show();
                 }
             }
         });

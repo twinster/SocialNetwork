@@ -9,8 +9,8 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/smsPersonImg"
         android:src="@drawable/defaultpic"
-        android:layout_width="56dp"
-        android:layout_height="56dp" />
+        android:layout_width="@dimen/chat_image_size"
+        android:layout_height="@dimen/chat_image_size" />
 
 
     <TextView
@@ -18,25 +18,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/smsPersonImg"
-        android:layout_marginTop="5dp"
-        android:text="first message " />
+        android:layout_marginTop="@dimen/forgot_pw_margin"
+        android:text="@string/first_message"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:background="@drawable/sms_background"
+        android:padding="10dp"/>
 
     <ImageView
         android:id="@+id/ivImageMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvSMS"
-        android:layout_toEndOf="@id/smsPersonImg"/>
+        android:layout_toEndOf="@id/smsPersonImg"
+        android:layout_alignStart="@+id/tvSMS"
+        android:visibility="gone"
+        />
 
 
     <TextView
         android:id="@+id/tvMessageTIme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
-        android:text="12:00" />
+        android:layout_alignStart="@+id/ivImageMessage"
+        android:layout_below="@+id/ivImageMessage"
+        android:text="@string/time" />
 
 
 </RelativeLayout>

@@ -132,12 +132,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
 
         if (from_user.equals(current_user_id)) {
-            holder.messageText.setBackgroundColor(Color.BLUE);
+            holder.messageText.setBackgroundResource(R.drawable.sms_background2);
             holder.messageText.setTextColor(Color.WHITE);
         }
         else{
-            holder.messageText.setBackgroundColor(Color.GRAY);
-            holder.messageText.setTextColor(Color.BLACK);
+            holder.messageText.setBackgroundResource(R.drawable.sms_background);
+            holder.messageText.setTextColor(Color.WHITE);
         }
         holder.messageText.setText(c.getMessage());
 

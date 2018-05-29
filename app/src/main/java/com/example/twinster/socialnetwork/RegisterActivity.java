@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         myToolBar = findViewById(R.id.registration_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle("Create Account");
+        getSupportActionBar().setTitle(R.string.create_account);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         registerDialog = new ProgressDialog(this);
@@ -63,14 +63,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 if(!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
-                    registerDialog.setTitle("Registering user");
-                    registerDialog.setMessage("Please wait while we are creating your account");
+                    registerDialog.setTitle(getString(R.string.registering_user));
+                    registerDialog.setMessage(getString(R.string.wait_while_registering_user));
                     registerDialog.setCanceledOnTouchOutside(false);
                     registerDialog.show();
                     user_registration(userName, email, password);
                 }
                 else{
-                    Toast.makeText(RegisterActivity.this, "Plase fill all inputs",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, R.string.fill_inputs,Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -108,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                             else{
                                 registerDialog.dismiss();
-                                Toast.makeText(RegisterActivity.this, "Error while Registering", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, R.string.error_while_registering, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -116,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else {
                     registerDialog.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Error During Registration Please input correct data",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, R.string.error_input_correct_data,Toast.LENGTH_LONG).show();
                 }
             }
         });

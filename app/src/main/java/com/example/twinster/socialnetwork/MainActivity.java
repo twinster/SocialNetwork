@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         myToolBar = (Toolbar) findViewById(R.id.mainactivity_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle("Bruco");
+        getSupportActionBar().setTitle(R.string.bruco);
 
     }
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(nextIntent);
-                    finish();
+
                 }
             });
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(MainActivity.this, RegisterActivity.class);
                     startActivity(nextIntent);
-                    finish();
+
                 }
             });
         }
