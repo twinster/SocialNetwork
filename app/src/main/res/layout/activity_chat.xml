@@ -40,7 +40,7 @@
             android:layout_height="@dimen/icon_size"
             android:layout_weight="1"
             android:background="@color/white"
-            android:src="@drawable/plusbutton" />
+            android:src="@drawable/ic_file_upload_black_24dp" />
 
         <EditText
             android:id="@+id/etMessage"
@@ -56,7 +56,7 @@
             android:layout_height="@dimen/icon_size"
             android:layout_weight="1"
             android:background="@color/white"
-            android:src="@drawable/sendbutton" />
+            android:src="@drawable/ic_send_black_24dp" />
 
     </LinearLayout>
 
