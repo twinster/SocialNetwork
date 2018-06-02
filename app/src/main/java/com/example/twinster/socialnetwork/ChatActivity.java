@@ -166,7 +166,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 if (online.equals("true")) {
 
-                    chatToolBarLastseen.setText(R.string.online);
+                    chatToolBarLastseen.setText("Online");
                 } else {
 
                     getTimeAgo getTimeAgo = new getTimeAgo();
@@ -189,28 +189,28 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-               if(!dataSnapshot.hasChild(chatuser)){
+                if(!dataSnapshot.hasChild(chatuser)){
 
-                   Map chatAddMap = new HashMap();
-                   chatAddMap.put("seen",false);
-                   chatAddMap.put("timestamp", ServerValue.TIMESTAMP);
+                    Map chatAddMap = new HashMap();
+                    chatAddMap.put("seen",false);
+                    chatAddMap.put("timestamp", ServerValue.TIMESTAMP);
 
-                   Map chatUserMap = new HashMap();
-                   chatUserMap.put("Chat/" + currentUserId + "/" + chatuser ,chatAddMap);
-                   chatUserMap.put("Chat/" + chatuser + "/" + currentUserId ,chatAddMap);
+                    Map chatUserMap = new HashMap();
+                    chatUserMap.put("Chat/" + currentUserId + "/" + chatuser ,chatAddMap);
+                    chatUserMap.put("Chat/" + chatuser + "/" + currentUserId ,chatAddMap);
 
-                   rootReference.updateChildren(chatUserMap, new DatabaseReference.CompletionListener() {
-                       @Override
-                       public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    rootReference.updateChildren(chatUserMap, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                           if(databaseError != null){
-                               Log.d("CHAT_LOG",databaseError.getMessage().toString());
-                           }
+                            if(databaseError != null){
+                                Log.d("CHAT_LOG",databaseError.getMessage().toString());
+                            }
 
-                       }
-                   });
+                        }
+                    });
 
-               }
+                }
 
             }
 

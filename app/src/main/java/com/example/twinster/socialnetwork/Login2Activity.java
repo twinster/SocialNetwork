@@ -50,7 +50,7 @@ public class Login2Activity extends AppCompatActivity {
 
         myToolBar = (Toolbar) findViewById(R.id.login2_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle(R.string.login);
+        getSupportActionBar().setTitle("Login");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
@@ -58,8 +58,8 @@ public class Login2Activity extends AppCompatActivity {
     public void signIn(View view) {
         String password = etPassword.getText().toString();
         if (!TextUtils.isEmpty(password)){
-            loginDialog.setTitle(getString(R.string.signing_in));
-            loginDialog.setMessage(getString(R.string.wait_while_checking_credentials));
+            loginDialog.setTitle("Signing in ");
+            loginDialog.setMessage("Please wait while we are checking ur credentials");
             loginDialog.setCanceledOnTouchOutside(false);
             loginDialog.show();
             myAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -83,14 +83,14 @@ public class Login2Activity extends AppCompatActivity {
                     }
                     else {
                         loginDialog.dismiss();
-                        Toast.makeText(Login2Activity.this, R.string.error_during_registration,Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login2Activity.this, "Error During Registration Please input correct data",Toast.LENGTH_LONG).show();
                     }
                 }
             });
 
         }
         else {
-            Toast.makeText(Login2Activity.this, R.string.fill_password_field,Toast.LENGTH_LONG).show();
+            Toast.makeText(Login2Activity.this, "Plase fill password field",Toast.LENGTH_LONG).show();
         }
 
     }

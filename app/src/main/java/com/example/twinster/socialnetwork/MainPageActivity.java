@@ -36,17 +36,17 @@ public class MainPageActivity extends AppCompatActivity {
         dbUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
 
 
-        mainviewpager =  findViewById(R.id.mainpage_viewpager);
+        mainviewpager = (ViewPager) findViewById(R.id.mainpage_viewpager);
         mainpagesectionsadapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mainviewpager.setAdapter(mainpagesectionsadapter);
 
-        mainpagetablayout =  findViewById(R.id.mainpage_tabs);
+        mainpagetablayout = (TabLayout) findViewById(R.id.mainpage_tabs);
         mainpagetablayout.setupWithViewPager(mainviewpager);
 
 
-        myToolBar =  findViewById(R.id.mainpage_toolbar);
+        myToolBar = (Toolbar) findViewById(R.id.mainpage_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle(R.string.main_page);
+        getSupportActionBar().setTitle("Main Page");
     }
 
     @Override

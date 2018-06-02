@@ -105,7 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
         Intent galleryIntent = new Intent();
         galleryIntent.setType("image/*");
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(galleryIntent, getString(R.string.select_iamge)), gallery_pick);
+        startActivityForResult(Intent.createChooser(galleryIntent, "SELECT IMAGE"), gallery_pick);
 //        CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(SettingsActivity.this);
 
     }
@@ -123,8 +123,8 @@ public class SettingsActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 myProgressDialog = new ProgressDialog(SettingsActivity.this);
-                myProgressDialog.setTitle(getString(R.string.uploadin_image));
-                myProgressDialog.setMessage(getString(R.string.wait_while_uploading));
+                myProgressDialog.setTitle("Uploading Image...");
+                myProgressDialog.setMessage("Wait while Uploading Image");
                 myProgressDialog.setCanceledOnTouchOutside(false);
                 myProgressDialog.show();
 
@@ -175,20 +175,20 @@ public class SettingsActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     myProgressDialog.dismiss();
-                                                    Toast.makeText(SettingsActivity.this, R.string.image_uploaded_succesfully, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(SettingsActivity.this, "image uploaded successfully", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
                                     } else {
                                         myProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, R.string.error_while_uploading, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SettingsActivity.this, "error while uploading", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
-                            
+
                         }else{
                             myProgressDialog.dismiss();
-                            Toast.makeText(SettingsActivity.this, R.string.error_while_uploading, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SettingsActivity.this, "error while uploading", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
