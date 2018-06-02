@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="@dimen/circleview_marginstart_dp"
-        android:src="@drawable/defaultpic" />
+        />
 
     <TextView
         android:id="@+id/tvUserName"
@@ -23,7 +23,7 @@
         android:layout_height="@dimen/name_height"
         android:textSize="@dimen/users_list_name"
         android:layout_marginStart="@dimen/usersrow_tvusername_marginstart"
-        android:text="@string/display_username"
+
         app:layout_constraintLeft_toRightOf="@+id/profileImgUsers"/>
     
     <ImageView
