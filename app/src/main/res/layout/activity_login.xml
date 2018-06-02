@@ -44,7 +44,8 @@
             android:layout_marginTop="@dimen/next_margin_top"
             android:onClick="next"
             android:background="@color/colorAccent"
-            android:textColor="#fff"/>
+            android:textColor="#fff"
+            />
 
         <Button
             android:id="@+id/btSend"
