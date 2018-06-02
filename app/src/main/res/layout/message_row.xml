@@ -2,15 +2,15 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:padding="@dimen/layout_padding"
     android:id="@+id/message_row"
     >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/smsPersonImg"
         android:src="@drawable/defaultpic"
-        android:layout_width="56dp"
-        android:layout_height="56dp" />
+        android:layout_width="@dimen/message_image_size"
+        android:layout_height="@dimen/message_image_size" />
 
 
     <TextView
@@ -20,10 +20,10 @@
         android:layout_toEndOf="@+id/smsPersonImg"
         android:text="@string/first_message"
         android:layout_below="@id/tvMessageTIme"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/message_margin_end"
         android:background="@drawable/sms_background"
         android:textColor="@color/white"
-        android:padding="5dp"
+        android:padding="@dimen/message_padding"
         />
 
     <ImageView
@@ -39,10 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/message_time_margin_top"
         android:layout_centerHorizontal="true"
         android:layout_toEndOf="@+id/smsPersonImg"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/message_margin_end"
         android:text="@string/_12_00"
         />
 

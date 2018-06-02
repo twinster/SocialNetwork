@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -69,12 +70,15 @@ public class RequestsFragment extends Fragment {
         rvRequestsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
+
+
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
 
         final FirebaseRecyclerAdapter<Friends, RequestsFragment.RequestsViewHolder> friendsAdapter =
                 new FirebaseRecyclerAdapter<Friends, RequestsFragment.RequestsViewHolder>(
@@ -89,57 +93,85 @@ public class RequestsFragment extends Fragment {
 
                 final String list_user_id = getRef(position).getKey();
 
-                dbUsers.child(list_user_id).addValueEventListener(new ValueEventListener() {
+                DatabaseReference get_type_ref = getRef(position).child("request_type").getRef();
+
+                get_type_ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()){
 
+                            String request_type = dataSnapshot.getValue().toString();
 
-                        final String displayName = dataSnapshot.child("name").getValue().toString();
-                        String thumbImage = dataSnapshot.child("thumb_image").getValue().toString();
+                            if (request_type.equals("received")){
 
-                        if (dataSnapshot.hasChild("online")){
-                            String userOnline =  dataSnapshot.child("online").getValue().toString();
-                            viewHolder.setUserOnline(userOnline);
-                        }
-                        viewHolder.setName(displayName);
-                        viewHolder.setImage(thumbImage, getContext());
-
-
-                        viewHolder.view.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                CharSequence options[] = new CharSequence[]{"Open Profile", "send message"};
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("Select Options");
-                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                dbUsers.child(list_user_id).addValueEventListener(new ValueEventListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int position) {
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                        if(position == 0){
 
-                                            Intent profileIntent = new Intent(getContext(),ProfileActivity.class);
-                                            profileIntent.putExtra("user_id",list_user_id);
-                                            startActivity(profileIntent);
+
+                                        final String displayName = dataSnapshot.child("name").getValue().toString();
+                                        String thumbImage = dataSnapshot.child("thumb_image").getValue().toString();
+
+                                        if (dataSnapshot.hasChild("online")){
+                                            String userOnline =  dataSnapshot.child("online").getValue().toString();
+                                            viewHolder.setUserOnline(userOnline);
                                         }
+                                        viewHolder.setName(displayName);
+                                        viewHolder.setImage(thumbImage, getContext());
 
-                                        if(position == 1){
 
-                                            Intent chatIntent = new Intent(getContext(),ChatActivity.class);
-                                            chatIntent.putExtra("user_id",list_user_id);
-                                            chatIntent.putExtra("user_name",displayName);
-                                            startActivity(chatIntent);
+                                        viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
 
-                                        }
+                                                CharSequence options[] = new CharSequence[]{"Open Profile", "send message"};
+
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                                builder.setTitle("Select Options");
+                                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int position) {
+
+                                                        if(position == 0){
+
+                                                            Intent profileIntent = new Intent(getContext(),ProfileActivity.class);
+                                                            profileIntent.putExtra("user_id",list_user_id);
+                                                            startActivity(profileIntent);
+                                                        }
+
+                                                        if(position == 1){
+
+                                                            Intent chatIntent = new Intent(getContext(),ChatActivity.class);
+                                                            chatIntent.putExtra("user_id",list_user_id);
+                                                            chatIntent.putExtra("user_name",displayName);
+                                                            startActivity(chatIntent);
+
+                                                        }
+
+                                                    }
+                                                });
+
+                                                builder.show();
+
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
 
                                     }
                                 });
 
-                                builder.show();
+                            } else if(request_type.equals("sent")){
+
+                                final ConstraintLayout constraintLayout = view.findViewById(R.id.user_row);
+                                constraintLayout.setVisibility(View.INVISIBLE);
 
                             }
-                        });
+
+                        }
                     }
 
                     @Override
