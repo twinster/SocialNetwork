@@ -57,6 +57,8 @@
             android:layout_marginTop="@dimen/next_margin_top"
             android:onClick="sendRecover"
             android:visibility="gone"
+            android:background="@color/colorAccent"
+            android:textColor="#fff"
             />
 
     </android.support.constraint.ConstraintLayout>

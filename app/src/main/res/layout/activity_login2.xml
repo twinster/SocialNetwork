@@ -38,7 +38,7 @@
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/forgont_password"
+        android:text="@string/forgot_password"
         android:clickable="true"
         android:focusable="true"
         android:onClick="recoverPassword"

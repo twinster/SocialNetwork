@@ -17,9 +17,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="username">UserName</string>
+    <string name="username">Username</string>
     <string name="email">Email</string>
-    <string name="forgont_password">Forgont Password</string>
+    <string name="forgot_password">Forgot Password</string>
     <string name="next">Next</string>
     <string name="remember_me">Remember Me</string>
     <string name="e_mail">E-mail</string>
