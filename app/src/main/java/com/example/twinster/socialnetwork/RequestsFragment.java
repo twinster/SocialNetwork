@@ -125,10 +125,10 @@ public class RequestsFragment extends Fragment {
                                             @Override
                                             public void onClick(View v) {
 
-                                                CharSequence options[] = new CharSequence[]{"Open Profile", "send message"};
+                                                CharSequence options[] = new CharSequence[]{getString(R.string.open_profile), getString(R.string.send_message)};
 
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                                builder.setTitle("Select Options");
+                                                builder.setTitle(R.string.select_options);
                                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int position) {

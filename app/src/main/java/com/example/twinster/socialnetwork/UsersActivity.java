@@ -40,7 +40,7 @@ public class UsersActivity extends AppCompatActivity {
 
         myToolBar = findViewById(R.id.users_tool_bar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle("Users");
+        getSupportActionBar().setTitle(R.string.users);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rvUsersList.setHasFixedSize(true);

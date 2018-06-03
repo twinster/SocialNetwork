@@ -166,7 +166,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 if (online.equals("true")) {
 
-                    chatToolBarLastseen.setText("Online");
+                    chatToolBarLastseen.setText(R.string.online);
                 } else {
 
                     getTimeAgo getTimeAgo = new getTimeAgo();
@@ -204,7 +204,7 @@ public class ChatActivity extends AppCompatActivity {
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
                             if(databaseError != null){
-                                Log.d("CHAT_LOG",databaseError.getMessage().toString());
+                                Log.d(getString(R.string.chat_log),databaseError.getMessage().toString());
                             }
 
                         }
@@ -273,7 +273,7 @@ public class ChatActivity extends AppCompatActivity {
                 galleryIntent.setType("image/*");
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
 
-                startActivityForResult(Intent.createChooser(galleryIntent,"SELECT IMAGE"),GALLERY_PICK);
+                startActivityForResult(Intent.createChooser(galleryIntent,getString(R.string.select_image)),GALLERY_PICK);
             }
         });
 
@@ -345,7 +345,7 @@ public class ChatActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                 if (databaseError != null){
-                                    Log.d("CHAT_LOG",databaseError.getMessage().toString());
+                                    Log.d(getString(R.string.chat_log),databaseError.getMessage().toString());
                                 }
                             }
                         });
@@ -384,7 +384,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-                Log.d("TOTALKEYS","Last Key : " +lastKey +"| Prev Key : " +previousKey + "| Message Key : " + messageKey);
+                Log.d(getString(R.string.totalkeys),getString(R.string.last_key) +lastKey + getString(R.string.prev_key) + previousKey + getString(R.string.message_key) + messageKey);
 
                 messagesAdapter.notifyDataSetChanged();
 

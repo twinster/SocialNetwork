@@ -46,7 +46,7 @@ public class MainPageActivity extends AppCompatActivity {
 
         myToolBar = (Toolbar) findViewById(R.id.mainpage_toolbar);
         setSupportActionBar(myToolBar);
-        getSupportActionBar().setTitle("Main Page");
+        getSupportActionBar().setTitle(R.string.main_page);
     }
 
     @Override
