@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         ivProfileImage = findViewById(R.id.ivProfileImage);
         tvProfileName = findViewById(R.id.tvProfileName);
-        tvTotalFriend = findViewById(R.id.tvTotalFriends);
+//        tvTotalFriend = findViewById(R.id.tvTotalFriends);
         btSendRequest = findViewById(R.id.btSendFreindRequest);
         btDecline = findViewById(R.id.btDeclineFreindRequest);
 

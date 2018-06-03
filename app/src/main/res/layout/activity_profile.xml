@@ -29,17 +29,17 @@
         android:textColor="@color/white"
         />
 
-    <TextView
-        android:id="@+id/tvTotalFriends"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textAlignment="center"
-        android:text="@string/total_friends"
-        android:textColor="@color/white"
-        android:layout_marginBottom="@dimen/fab_margin"
-        app:layout_constraintBottom_toTopOf="@id/btSendFreindRequest"/>
+    <!--<TextView-->
+        <!--android:id="@+id/tvTotalFriends"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--android:textAlignment="center"-->
+        <!--android:text="@string/total_friends"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_marginBottom="@dimen/fab_margin"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/btSendFreindRequest"/>-->
 
 
 
